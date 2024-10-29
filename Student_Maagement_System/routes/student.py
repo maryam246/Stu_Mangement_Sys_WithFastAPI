@@ -1,4 +1,3 @@
-# routes/student.py
 from fastapi import APIRouter, HTTPException, Depends
 from bson.objectid import ObjectId
 from Database.schemas import all_students, individual_data
@@ -27,7 +26,7 @@ async def create_student(new_student: Student, current_admin: dict = Depends(get
         collection.insert_one(new_student_dict)
         return {"status_code": 200, "message": "Student record created successfully", "student_id": student_id}
     except Exception as e:
-        raise HTTPException(status_code=404, detail="An error occurred while creating the student record")
+        raise HTTPException(status_code=400, detail="An error occurred while creating the student record")
 
 # Get all students created by the logged-in admin
 @router.get("/get-all")
