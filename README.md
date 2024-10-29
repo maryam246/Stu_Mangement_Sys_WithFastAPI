@@ -25,7 +25,7 @@ git clone https://github.com/maryam246/Stu_Mangement_Sys_WithFastAPI.git
 2. Navigate to the project directory:
 
 ```bash
-cd StuMangementSystem_WithFastAPI
+cd Stu_Mangement_Sys_WithFastAPI
 ```
 
 3. Create a virtual environment and activate it:
@@ -40,10 +40,11 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-5. Create a .env file in the project root and add your MongoDB connection string:
+5. Create a .env file in the project root and add your MongoDB connection string and Your JWT secret key:
 
 ```bash
 MONGODB_LINK=<your-mongodb-connection-string>
+SECRET_KEY=<your-jwt-secret-key>
 ```
 
 # Usage
@@ -58,10 +59,3 @@ uvicorn main:app --reload
 http://127.0.0.1:8000/docs
 ```
 This will open the automatically generated Swagger UI, where you can interact with the API.
-
-## Environment Variables
-The project uses environment variables for sensitive data. Set up your .env file with the following variables:
-```bash
-MONGODB_LINK=<your-mongodb-connection-string>
-SECRET_KEY=<your-jwt-secret-key>
-```
