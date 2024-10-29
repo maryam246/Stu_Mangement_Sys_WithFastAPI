@@ -60,8 +60,8 @@ http://127.0.0.1:8000/docs
 This will open the automatically generated Swagger UI, where you can interact with the API.
 
 ## Environment Variables
-The project uses environment variables to store sensitive data like the MongoDB connection link. You'll need to create a .env file and add the following:
-
+The project uses environment variables for sensitive data. Set up your .env file with the following variables:
 ```bash
 MONGODB_LINK=<your-mongodb-connection-string>
+SECRET_KEY=<your-jwt-secret-key>
 ```
