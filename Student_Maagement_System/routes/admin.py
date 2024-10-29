@@ -22,10 +22,10 @@ async def register_admin(admin_data: AdminRegistration):
 
         # Check if admin already exists
         if admin_collection.find_one({"email": admin_data.email}):
-            raise HTTPException(status_code=400, detail="Admin email already registered")
+            raise HTTPException(status_code=208, detail="Admin email already registered")
 
         if admin_collection.find_one({"campus": admin_data.campus}):
-            raise HTTPException(status_code=400, detail="Campus already registered")
+            raise HTTPException(status_code=208, detail="Campus already registered")
 
         # Register new admin
         hashed_password = hash_password(admin_data.password)
