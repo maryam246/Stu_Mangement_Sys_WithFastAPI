@@ -45,7 +45,7 @@ async def register_admin(admin_data: AdminRegistration):
         raise e  # Raise HTTP exceptions as they are
     except Exception as e:
         # Log the error or handle it accordingly
-        raise HTTPException(status_code=500, detail="An error occurred during registration")
+        raise HTTPException(status_code=400, detail="An error occurred during registration")
 
 # Admin login endpoint to create token
 @router.post("/login")
@@ -57,7 +57,7 @@ async def login_admin(form_data: OAuth2PasswordRequestForm = Depends()):
 
         admin = admin_collection.find_one({"email": form_data.username})
         if not admin or not verify_password(form_data.password, admin["password"]):
-            raise HTTPException(status_code=401, detail="Invalid credentials")
+            raise HTTPException(status_code=400, detail="Invalid credentials")
 
         # Create a JWT token for the admin
         access_token = create_access_token(data={"sub": admin["email"]})
@@ -71,4 +71,4 @@ async def login_admin(form_data: OAuth2PasswordRequestForm = Depends()):
         raise e  # Raise HTTP exceptions as they are
     except Exception as e:
         # Log the error or handle it accordingly
-        raise HTTPException(status_code=500, detail="An error occurred during login")
+        raise HTTPException(status_code=400, detail="An error occurred during login")
