@@ -19,7 +19,7 @@ pip install -r requirements.txt
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/maryam246/StuMangementSystem_WithFastAPI.git
+git clone https://github.com/maryam246/Stu_Mangement_Sys_WithFastAPI.git
 ```
 
 2. Navigate to the project directory:
