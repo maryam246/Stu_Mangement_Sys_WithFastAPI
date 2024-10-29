@@ -27,7 +27,7 @@ async def create_student(new_student: Student, current_admin: dict = Depends(get
         collection.insert_one(new_student_dict)
         return {"status_code": 200, "message": "Student record created successfully", "student_id": student_id}
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error occurred while creating the student record")
+        raise HTTPException(status_code=404, detail="An error occurred while creating the student record")
 
 # Get all students created by the logged-in admin
 @router.get("/get-all")
@@ -36,7 +36,7 @@ async def get_all_students(current_admin: dict = Depends(get_current_admin)):
         students = collection.find({"admin_id": current_admin["email"]})
         return all_students(students)
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error occurred while fetching students")
+        raise HTTPException(status_code=404, detail="An error occurred while fetching students")
 
 # Get a specific student by student ID (only if it belongs to the logged-in admin)
 @router.get("/get/{student_id}")
@@ -47,7 +47,7 @@ async def get_student(student_id: str, current_admin: dict = Depends(get_current
             raise HTTPException(status_code=404, detail="Student not found")
         return individual_data(student)
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error occurred while fetching the student")
+        raise HTTPException(status_code=404, detail="An error occurred while fetching the student")
 
 # Get a specific student by MongoDB _id (only if it belongs to the logged-in admin)
 @router.get("/get-by-mongodb-id/{mongodb_id}")
@@ -58,7 +58,7 @@ async def get_student_by_mongodb_id(mongodb_id: str, current_admin: dict = Depen
             raise HTTPException(status_code=404, detail="Student not found")
         return individual_data(student)
     except Exception:
-        raise HTTPException(status_code=400, detail="Invalid MongoDB ID format")
+        raise HTTPException(status_code=404, detail="Invalid MongoDB ID format")
 
 # Update a specific student by student ID (only if it belongs to the logged-in admin)
 @router.put("/update/{student_id}")
@@ -76,7 +76,7 @@ async def update_student(student_id: str, updated_student: Student, current_admi
             raise HTTPException(status_code=404, detail="Student not found or no update made")
         return {"status_code": 200, "message": "Student updated successfully"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error occurred while updating the student")
+        raise HTTPException(status_code=404, detail="An error occurred while updating the student")
 
 # Delete a specific student by student ID (only if it belongs to the logged-in admin)
 @router.delete("/delete/{student_id}")
@@ -87,4 +87,4 @@ async def delete_student(student_id: str, current_admin: dict = Depends(get_curr
             raise HTTPException(status_code=404, detail="Student not found or not authorized to delete")
         return {"status_code": 200, "message": "Student deleted successfully"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An error occurred while deleting the student")
+        raise HTTPException(status_code=404, detail="An error occurred while deleting the student")
