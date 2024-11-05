@@ -25,7 +25,7 @@ git clone https://github.com/maryam246/Stu_Mangement_Sys_WithFastAPI.git
 2. Navigate to the project directory:
 
 ```bash
-cd Stu_Mangement_Sys_WithFastAPI
+cd Student_Maagement_System
 ```
 
 3. Create a virtual environment and activate it:
