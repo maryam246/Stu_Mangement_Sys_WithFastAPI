@@ -5,11 +5,11 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy requirements.txt and install dependencies
-COPY ../requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project into the container
-COPY .. .  
+COPY . .  # Copy all project files into the container
 
 # Expose port 8000 for FastAPI
 EXPOSE 8000
