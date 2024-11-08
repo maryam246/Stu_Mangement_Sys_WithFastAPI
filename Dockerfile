@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project into the container
-COPY . .  # Copy all project files into the container
+COPY . .
 
 # Expose port 8000 for FastAPI
 EXPOSE 8000
