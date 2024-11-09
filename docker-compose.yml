@@ -2,10 +2,10 @@ version: '3'
 services:
   app:
     build:
-      context: .  # Build context is now the root project directory
-      dockerfile: Dockerfile  # Path to the Dockerfile in the root directory
+      context: .  # Build the image from the current directory
+      dockerfile: Dockerfile  # Use the Dockerfile inside the current directory
     ports:
       - "8000:8000"  # Map port 8000 on your local machine to port 8000 in the container
     volumes:
-      - ./app:/app  # Map the 'app' directory from the host to the container for real-time sync
-    image: myapp  # Name the image 'myapp'
+      - .:/app  # Create and use a named volume for persistence
+    image: myapp  
